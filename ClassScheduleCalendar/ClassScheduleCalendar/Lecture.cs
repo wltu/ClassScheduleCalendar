@@ -8,6 +8,10 @@ namespace ClassScheduleCalendar
 {
     class Lecture : Class
     {
+        public Lecture()
+        {
+        }
+
         public Lecture(String courseName)
         {
             CourseName = courseName;
