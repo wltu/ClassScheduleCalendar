@@ -20,7 +20,7 @@ env:
       Solution_Name: ClassScheduleCalendar.sln
       Test_Project_Path: ClassScheduleCalendar\ClassScheduleCalendarTests\ClassScheduleCalendarTests.csproj
 
-  steps:
+    steps:
     - name: Checkout
       uses: actions/checkout@v2
       with:
