@@ -14,11 +14,13 @@ jobs:
       matrix:
         configuration: [Debug, Release]
 
-    runs-on: windows-latest  
+    runs-on: windows-latest 
 
-env:
+    env:
       Solution_Name: ClassScheduleCalendar.sln
-      Test_Project_Path: ClassScheduleCalendar\ClassScheduleCalendarTests\ClassScheduleCalendarTests.csproj
+      Test_Project_Path: ClassScheduleCalendar\ClassScheduleCalendarTests\ClassScheduleCalendarTests.csproj                 # Replace with the path to your test project, i.e. MyWpfApp.Tests\MyWpfApp.Tests.csproj.
+#       Wap_Project_Directory: your-wap-project-directory-name    # Replace with the Wap project directory relative to the solution, i.e. MyWpfApp.Package.
+#       Wap_Project_Path: your-wap-project-path                   # Replace with the path to your Wap project, i.e. MyWpf.App.Package\MyWpfApp.Package.wapproj.
 
     steps:
     - name: Checkout
@@ -30,7 +32,7 @@ env:
     - name: Install .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.301
+        dotnet-version: 3.1.101
 
     # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
     - name: Setup MSBuild.exe
