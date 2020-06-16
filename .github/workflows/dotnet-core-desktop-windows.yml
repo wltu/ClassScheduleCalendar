@@ -1,4 +1,4 @@
-name: .NET Core Desktop Winodws
+name: .NET Core Desktop Windows
 
 on:
   push:
@@ -39,7 +39,7 @@ jobs:
 
     # Build Project
     - name: Build project
-      run: dotnet build ./ClassScheduleCalendar --source ./ClassScheduleCalendar/packages
+      run: dotnet build ./ClassScheduleCalendar --source ../ClassScheduleCalendar/packages
 
       # Execute all unit tests in the solution
     - name: Execute unit tests
