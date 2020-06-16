@@ -1,0 +1,46 @@
+name: .NET Core Desktop Linux
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+
+    strategy:
+      matrix:
+        configuration: [Release]
+
+    runs-on: ubuntu-latest
+
+    env:
+      Solution_Name: ClassScheduleCalendar.sln
+      Test_Project_Path: ClassScheduleCalendar\ClassScheduleCalendarTests\ClassScheduleCalendarTests.csproj
+      Wap_Project_Directory: packages
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    # Install the .NET Core workload
+    - name: Install .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.301
+
+    # Get .NETFramework,Version=v4.6.1
+    # - name: Setup .NetFramework
+    #   run: wget https://aka.ms/msbuild/developerpacks
+
+    # Build Project
+    - name: Build project
+      run: make
+
+    # Execute all unit tests in the solution
+    - name: Execute unit tests
+      run: make test
