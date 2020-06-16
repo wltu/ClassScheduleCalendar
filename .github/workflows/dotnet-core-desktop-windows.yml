@@ -38,10 +38,6 @@ jobs:
       uses: microsoft/setup-msbuild@2008f912f56e61277eefaac6d1888b750582aa16
 
     # Build Project
-    - name: Build project 0
-      run: dotnet build ./ClassScheduleCalendar
-
-    # Build Project
     - name: Build project
       run: dotnet build ./ClassScheduleCalendar --source ../packages/
 
