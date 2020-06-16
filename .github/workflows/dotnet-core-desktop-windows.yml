@@ -39,7 +39,7 @@ jobs:
 
     # Build Project
     - name: Build project
-      run: dotnet build ./ClassScheduleCalendar --source ../ClassScheduleCalendar/packages
+      run: dotnet build ./ClassScheduleCalendar --source ../packages
 
       # Execute all unit tests in the solution
     - name: Execute unit tests
