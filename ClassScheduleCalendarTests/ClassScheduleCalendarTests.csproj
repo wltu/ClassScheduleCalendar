@@ -14,7 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ClassScheduleCalendar\ClassScheduleCalendar.csproj" />
+    <ProjectReference Include="../ClassScheduleCalendar/ClassScheduleCalendar.csproj" />
   </ItemGroup>
-
 </Project>

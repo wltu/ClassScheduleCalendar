@@ -12,6 +12,7 @@ namespace ClassScheduleCalendarTests
         {
             ClassSchedule classSchedule = new ClassSchedule();
 
+
             List<int> days = new List<int>() { 1, 3, 6 };
             string output = "MO,WE,SA";
 

@@ -17,9 +17,7 @@ jobs:
     runs-on: windows-latest 
 
     env:
-      Solution_Name: ClassScheduleCalendar.sln
-      Test_Project_Path: ClassScheduleCalendar\ClassScheduleCalendarTests\ClassScheduleCalendarTests.csproj
-      Wap_Project_Directory: packages
+      Test_Project_Path: ClassScheduleCalendarTests\ClassScheduleCalendarTests.csproj
 
     steps:
     - name: Checkout
@@ -39,8 +37,8 @@ jobs:
 
     # Build Project
     - name: Build project
-      run: dotnet build ./ClassScheduleCalendar --source ../packages/
+      run: make
 
       # Execute all unit tests in the solution
     - name: Execute unit tests
-      run: dotnet test ./ClassScheduleCalendar
+      run: make test
