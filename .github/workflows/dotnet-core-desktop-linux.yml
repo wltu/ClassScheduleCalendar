@@ -33,6 +33,14 @@ jobs:
       with:
         dotnet-version: 3.1.301
 
+    # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
+    - name: Setup MSBuild.exe
+      uses: microsoft/setup-msbuild@2008f912f56e61277eefaac6d1888b750582aa16
+
+    # Build Project
+    - name: Build project
+      run: dotnet build ./ClassScheduleCalendar --source ./ClassScheduleCalendar/packages
+
     # Execute all unit tests in the solution
     - name: Execute unit tests
-      run: dotnet build ./ClassScheduleCalendar
+      run: dotnet test ./ClassScheduleCalendar
