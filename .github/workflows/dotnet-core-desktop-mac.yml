@@ -32,14 +32,6 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.301
-  
-    # # Get .NETFramework,Version=v4.6.1
-    # - name: Setup .NetFramework
-    #   run: wget https://aka.ms/msbuild/developerpacks
-
-    # Build Project
-    - name: Build project 0
-      run: dotnet build ./ClassScheduleCalendar
 
     # Build Project
     - name: Build project
