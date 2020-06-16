@@ -38,8 +38,12 @@ jobs:
       run: wget https://aka.ms/msbuild/developerpacks
 
     # Build Project
+    - name: Build project 0
+      run: dotnet build ./ClassScheduleCalendar
+
+    # Build Project
     - name: Build project
-      run: dotnet build ./ClassScheduleCalendar --source ../packages
+      run: dotnet build ./ClassScheduleCalendar --source ../packages/
 
 
     # Execute all unit tests in the solution
