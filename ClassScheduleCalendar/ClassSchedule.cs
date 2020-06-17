@@ -1,17 +1,11 @@
-﻿using Google.Apis.Auth.OAuth2;
-using Google.Apis.Calendar.v3;
+﻿using Google.Apis.Calendar.v3;
 using Google.Apis.Calendar.v3.Data;
-using Google.Apis.Services;
-using Google.Apis.Util.Store;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ClassScheduleCalendar
 {
-    class ClassSchedule
+    public class ClassSchedule
     {
         public ClassSchedule(CalendarService service)
         {
@@ -21,7 +15,15 @@ namespace ClassScheduleCalendar
             ShowCalendarLists();
         }
 
+        public ClassSchedule()
+        {
+            Schedule = new List<Course>();
+            CalendarMap = new Dictionary<String, String>();
+            this.Service = null;
+        }
+
         public Dictionary<String, String> CalendarMap { get; private set; }
+
         private readonly Dictionary<int, String> DaysMap = new Dictionary<int, String> {
             { 0, "SU" },
             { 1, "MO" },
@@ -81,12 +83,15 @@ namespace ClassScheduleCalendar
 
         private void AddCalendar(String summary)
         {
+            if (Service == null)
+                return;
+
             Calendar newCalendar = new Calendar();
             newCalendar.Summary = summary;
             Service.Calendars.Insert(newCalendar).Execute();
         }
 
-        private String ConvertDays(List<int> days)
+        public String ConvertDays(List<int> days)
         {
             String output = "";
 
@@ -104,6 +109,9 @@ namespace ClassScheduleCalendar
 
         private void AddEvent(Class currentClass)
         {
+            if (Service == null)
+                return;
+
             // String summary, String description, String days, int count)
             Event newEvent = new Event()
             {
@@ -125,7 +133,6 @@ namespace ClassScheduleCalendar
             };
 
             Service.Events.Insert(newEvent, CalendarId).Execute();
-
         }
     }
 

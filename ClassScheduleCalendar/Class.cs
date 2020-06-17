@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClassScheduleCalendar
 {
-    interface Class
+    public interface Class
     {
         DateTime StartTime { get; set; }
         DateTime EndTime { get; set; }

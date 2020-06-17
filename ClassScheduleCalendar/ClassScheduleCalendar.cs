@@ -10,12 +10,17 @@ using System.Threading;
 
 namespace ClassScheduleCalendar
 {
-    class ClassScheduleCalendar
+    public class ClassScheduleCalendar
     {
         // If modifying these scopes, delete your previously saved credentials
         // at ~/.credentials/calendar-dotnet-quickstart.json
         static string[] Scopes = { CalendarService.Scope.Calendar };
         static string ApplicationName = "Google Calendar API .NET Quickstart";
+
+        public bool Test()
+        {
+            return true;
+        }
 
         static void Main(string[] args)
         {
@@ -46,7 +51,7 @@ namespace ClassScheduleCalendar
             // Adding Class Schedule Example.
             ClassSchedule classSchedule = new ClassSchedule(service)
             {
-                StartDate = new DateTime(2020, 3, 30),
+                StartDate = new DateTime(2020, 6, 15),
                 NumWeeks = 3
             };
 

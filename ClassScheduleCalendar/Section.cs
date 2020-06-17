@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ClassScheduleCalendar
 {
-    class Lecture : Class
+    class Section : Class
     {
-        public Lecture(String courseName)
+        public Section(String courseName)
         {
             CourseName = courseName;
         }
@@ -17,13 +14,12 @@ namespace ClassScheduleCalendar
 
         public DateTime EndTime { get; set; }
 
-        public String Summary => CourseName + " Lecture";
+        public String Summary => CourseName + " Section";
 
         public String Description { get; set; }
 
         public String CourseName { get; private set; }
 
         public List<int> Days { get; set; }
-
     }
 }
