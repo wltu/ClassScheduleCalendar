@@ -11,7 +11,7 @@ namespace ClassScheduleCalendar
         {
             Schedule = new List<Course>();
             CalendarMap = new Dictionary<String, String>();
-            this.Service = service;
+            this._service = service;
             ShowCalendarLists();
         }
 
@@ -19,12 +19,19 @@ namespace ClassScheduleCalendar
         {
             Schedule = new List<Course>();
             CalendarMap = new Dictionary<String, String>();
-            this.Service = null;
+            this._service = null;
+        }
+
+        public void SetService(CalendarService service)
+        {
+            this._service = service;
+            ShowCalendarLists();
+
         }
 
         public Dictionary<String, String> CalendarMap { get; private set; }
 
-        private readonly Dictionary<int, String> DaysMap = new Dictionary<int, String> {
+        private readonly Dictionary<int, String> _daysMap = new Dictionary<int, String> {
             { 0, "SU" },
             { 1, "MO" },
             { 2, "TU" },
@@ -34,12 +41,12 @@ namespace ClassScheduleCalendar
             { 6, "SA" }
         };
 
-        private CalendarService Service { get; set; }
+        private CalendarService _service { get; set; }
 
         public String CalendarId { get; set; } = "primary";
-        private String TimeZone { get; set; }
+        private String _timeZone { get; set; }
 
-        private String RepeatEvenRules { get; set; } = "RRULE:FREQ=WEEKLY;COUNT={0};BYDAY={1}";
+        private String _repeatEvenRules { get; set; } = "RRULE:FREQ=WEEKLY;COUNT={0};BYDAY={1}";
 
         public DateTime StartWeek => StartDate.AddDays(-(int)StartDate.DayOfWeek);
 
@@ -67,13 +74,13 @@ namespace ClassScheduleCalendar
 
         private void ShowCalendarLists()
         {
-            var calendars = Service.CalendarList.List().Execute().Items;
+            var calendars = _service.CalendarList.List().Execute().Items;
 
             foreach (CalendarListEntry entry in calendars)
             {
                 if (entry.Primary ?? false)
                 {
-                    TimeZone = entry.TimeZone;
+                    _timeZone = entry.TimeZone;
                 }
 
                 CalendarMap[entry.Summary] = entry.Id;
@@ -83,12 +90,12 @@ namespace ClassScheduleCalendar
 
         private void AddCalendar(String summary)
         {
-            if (Service == null)
+            if (_service == null)
                 return;
 
             Calendar newCalendar = new Calendar();
             newCalendar.Summary = summary;
-            Service.Calendars.Insert(newCalendar).Execute();
+            _service.Calendars.Insert(newCalendar).Execute();
         }
 
         public String ConvertDays(List<int> days)
@@ -97,7 +104,7 @@ namespace ClassScheduleCalendar
 
             for (int i = 0; i < days.Count; i++)
             {
-                output += DaysMap[days[i]];
+                output += _daysMap[days[i]];
                 if (i < days.Count - 1)
                 {
                     output += ",";
@@ -109,7 +116,7 @@ namespace ClassScheduleCalendar
 
         private void AddEvent(Class currentClass)
         {
-            if (Service == null)
+            if (_service == null)
                 return;
 
             // String summary, String description, String days, int count)
@@ -120,19 +127,19 @@ namespace ClassScheduleCalendar
                 Start = new EventDateTime()
                 {
                     DateTime = currentClass.StartTime,
-                    TimeZone = TimeZone
+                    TimeZone = _timeZone
                 },
                 End = new EventDateTime()
                 {
                     DateTime = currentClass.EndTime,
-                    TimeZone = TimeZone
+                    TimeZone = _timeZone
                 },
                 Recurrence = new String[] {
-                    String.Format(RepeatEvenRules, currentClass.Days.Count * NumWeeks, ConvertDays(currentClass.Days))
+                    String.Format(_repeatEvenRules, currentClass.Days.Count * NumWeeks, ConvertDays(currentClass.Days))
                 },
             };
 
-            Service.Events.Insert(newEvent, CalendarId).Execute();
+            _service.Events.Insert(newEvent, CalendarId).Execute();
         }
     }
 

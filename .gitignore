@@ -354,3 +354,6 @@ credentials.json
 token.json
 
 .vscode/
+
+# Storage files
+storage/

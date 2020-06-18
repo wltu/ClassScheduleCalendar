@@ -1,15 +1,20 @@
-compile:
+export STORAGE_LOCATION = $(CURDIR)/storage
+
+compile: storage
 	dotnet build ./ClassScheduleCalendar
 	dotnet build ./ClassScheduleCalendarTests
 
-compile-main:
+compile-main: storage
 	dotnet build ./ClassScheduleCalendar
 
 compile-test:
 	dotnet build ./ClassScheduleCalendarTests
 
-run:
+run: storage
 	dotnet run --project ./ClassScheduleCalendar
 
-test:
+test: storage
 	dotnet test ./ClassScheduleCalendarTests
+
+storage :
+	mkdir storage
