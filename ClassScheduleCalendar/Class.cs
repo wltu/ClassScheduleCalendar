@@ -17,11 +17,11 @@ namespace ClassScheduleCalendar
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
 
-        public String Summary => CourseName + " " + Type;
+        public string Summary => CourseName + " " + Type;
 
-        public String Description { get; set; }
+        public string Description { get; set; }
 
-        public String CourseName { get; set; }
+        public string CourseName { get; set; }
 
         public List<int> Days { get; set; }
 
