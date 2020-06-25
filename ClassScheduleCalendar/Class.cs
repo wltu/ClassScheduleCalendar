@@ -6,18 +6,26 @@ using System.Threading.Tasks;
 
 namespace ClassScheduleCalendar
 {
-    public interface Class
+    public class Class
     {
-        DateTime StartTime { get; set; }
-        DateTime EndTime { get; set; }
+        public Class(string courseName, string type)
+        {
+            this.CourseName = courseName;
+            this.Type = type;
+        }
 
-        String Summary { get; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
 
-        String Description { get; set; }
+        public string Summary => CourseName + " " + Type;
 
-        String CourseName { get; }
+        public string Description { get; set; }
 
-        List<int> Days { get; set; }
+        public string CourseName { get; set; }
+
+        public List<int> Days { get; set; }
+
+        public string Type { get; set; }
 
     }
 }

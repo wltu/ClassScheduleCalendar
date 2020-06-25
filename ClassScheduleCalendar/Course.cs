@@ -7,6 +7,6 @@ namespace ClassScheduleCalendar
     {
         public List<Class> Classes { get; set; }
 
-        public String CourseName { get; set; }
+        public string CourseName { get; set; }
     }
 }
