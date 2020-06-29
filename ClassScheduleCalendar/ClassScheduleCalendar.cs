@@ -204,9 +204,9 @@ namespace ClassScheduleCalendar
             );
 
             calendar.SaveCalendar("test.json");
-            calendar.SetCalendarID("Test1");
+            //calendar.SetCalendarID("Test1");
             // calendar.Export();
-            calendar.ListEvents("Test1");
+            //calendar.ListEvents("Test1");
 
             Console.Read();
         }
